@@ -1,0 +1,40 @@
+const Sequelize = require("sequelize");
+const db = require("../../config/dbConfig");
+
+const User = db.define('users', {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true
+        },
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        username: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        role: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
+        isActive: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        }
+    },
+    {
+        timestamps: true,
+        createdAt: "created_at",
+        updatedAt: "updated_at",
+    })
+
+module.exports = User
