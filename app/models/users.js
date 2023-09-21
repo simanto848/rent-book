@@ -29,6 +29,10 @@ const User = db.define('users', {
             type: Sequelize.BOOLEAN,
             allowNull: false,
             defaultValue: true
+        },
+        verifyToken: {
+            type: Sequelize.STRING,
+            allowNull: true
         }
     },
     {

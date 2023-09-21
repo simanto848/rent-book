@@ -11,12 +11,10 @@ const SuperAdmin = db.define("superadmin", {
     email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
     },
     username: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
     },
     password: {
         type: Sequelize.STRING,
@@ -26,12 +24,7 @@ const SuperAdmin = db.define("superadmin", {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true,
-    },
-    isActive: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-    },
+    }
 },
 {
     timestamps: true,
