@@ -12,7 +12,7 @@ const mail = async function (email, code){
 
     const message = {
         from: process.env.MAIL_FROM, // Sender address
-        to: 'user@email.com',         // List of recipients
+        to: email,         // List of recipients
         subject: 'Activate Account', // Subject line
         html: `<i>To activate your account please enter this code: <a href="http://localhost:${process.env.PORT}/user/verify-account?token=${code}">Verify Account</a> </i>` // Plain text body
     };

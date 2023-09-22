@@ -1,7 +1,7 @@
 {{>stylesheetlinks}}
 
 <div class="container d-flex justify-content-center align-items-center h-100">
-    <form class="container shadow w-50 h-50 p-4 rounded">
+    <form action="/user" method="post" class="container shadow w-50 h-50 p-4 rounded">
         <div class="my-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -13,6 +13,7 @@
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">remember me</label>
+            <a href="/user/register" class="float-end link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Sing up</a>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

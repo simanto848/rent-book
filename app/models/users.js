@@ -23,12 +23,12 @@ const User = db.define('users', {
         role: {
             type: Sequelize.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },
         isActive: {
             type: Sequelize.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },
         verifyToken: {
             type: Sequelize.STRING,
