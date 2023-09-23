@@ -82,7 +82,7 @@ const login = async (req, res) => {
                 }
                 else {
                     if(user.isActive === true && user.role === false){
-                        // req.session.profile = user.dataValues
+                        req.session.profile = user.dataValues
                         return res.redirect("/")
                     }
                 }
