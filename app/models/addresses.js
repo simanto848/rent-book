@@ -16,7 +16,7 @@ const Address = db.define("addresses", {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    province: {
+    state: {
         type: Sequelize.STRING,
         allowNull: false
     },

@@ -14,7 +14,11 @@ const Profile = db.define('profiles', {
         },
         lastName: {
             type: Sequelize.STRING
-        }
+        },
+    phone: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 }, {
     timestamps: true,
     createdAt: "created_at",

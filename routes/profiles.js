@@ -1,7 +1,8 @@
 const router = require("express").Router()
 const ProfileController = require("../app/controllers/ProfileController")
+const isLogin = require("../app/middleware/isLogin")
 
-router.get("/", ProfileController.profileIndex)
-router.post("/", ProfileController.profileCreate)
+router.get("/", isLogin, ProfileController.profileIndex)
+router.post("/", isLogin, ProfileController.profileName)
 
 module.exports = router
