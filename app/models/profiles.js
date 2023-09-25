@@ -17,7 +17,7 @@ const Profile = db.define('profiles', {
         },
     phone: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }
 }, {
     timestamps: true,

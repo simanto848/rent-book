@@ -2,13 +2,18 @@ const User = require('../models/users');
 const Profile = require('../models/profiles');
 const Address = require('../models/addresses');
 
-const profileIndex = (req, res) =>{
-    return res.render('profile');
+const profileIndex = async (req, res) =>{
+    const userId = req.session.profile.id
+    const isProfile = await Profile.findOne({where: {userId: userId}})
+    const isAddress = await Address.findOne({where: {userId: userId}})
+    return res.render('profile', {
+        profile: isProfile,
+        address: isAddress
+    });
 }
 
 const profileName = async (req, res) =>{
     const userId = req.session.profile.id
-    console.log("User Id", userId)
     const {firstName, lastName} = req.body
 
     if(req.method === "POST"){
@@ -16,32 +21,56 @@ const profileName = async (req, res) =>{
             return res.redirect('/profile')
         }
         else {
-            const user = await User.findOne({
-                where: {
-                    id: userId
-                }
-            })
-            const profile = await Profile.findOne({
-                where: {
+            const isProfile = await Profile.findOne({where: {userId: userId}})
+            if(!isProfile){
+                const profile = await Profile.create({
+                    firstName: firstName,
+                    lastName: lastName,
                     userId: userId
-                }
+                })
+                return res.redirect('/profile')
+            }
+            else {
+                const profile = await Profile.update({
+                    firstName: firstName,
+                    lastName: lastName,
+                },{
+                    where: {userId: userId}
+                })
+                return res.redirect('/profile')
+            }
+        }
+    }
+}
+
+const addressIndex = async (req, res) =>{
+    const userId = req.session.profile.id
+    const { address, city, state, postalCode, country } = req.body
+    if(!address && !city && !state && !postalCode && !country){
+        return res.redirect('/profile')
+    }
+    else {
+        const isAddress = await Address.findOne({where: {userId: userId}})
+        if(!isAddress){
+            const addressCreate = await Address.create({
+                address: address,
+                city: city,
+                state: state,
+                postalCode: postalCode,
+                country: country,
+                userId: userId
             })
-            const address = await Address.findOne({
-                where: {
-                    profileId: profile.id
-                }
-            })
-            await user.update({
-                firstName: firstName,
-                lastName: lastName
-            })
-            await profile.update({
-                firstName: firstName,
-                lastName: lastName
-            })
-            await address.update({
-                firstName: firstName,
-                lastName: lastName
+            return res.redirect('/profile')
+        }
+        else {
+            const addressUpdate = await Address.update({
+                address: address,
+                city: city,
+                state: state,
+                postalCode: postalCode,
+                country: country,
+            },{
+                where: {userId: userId}
             })
             return res.redirect('/profile')
         }
@@ -50,5 +79,6 @@ const profileName = async (req, res) =>{
 
 module.exports = {
     profileIndex,
-    profileName
+    profileName,
+    addressIndex
 }

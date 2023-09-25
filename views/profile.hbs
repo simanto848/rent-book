@@ -27,14 +27,24 @@
             <h2 class="text-center text-success">Profile Information</h2>
             <div class="row g-3 mt-4">
                 <div class="col-6">
-                    <form action="#" method="post" class="container mx-2">
+                    <form action="/profile" method="post" class="container mx-2">
+                    {{#if profile}}
                         <div class="col mb-2">
-                            <input type="text" name="firstName" class="form-control" placeholder="First name" aria-label="First name">
+                            <input type="text" name="firstName" class="form-control" placeholder="First name" value="{{profile.firstName}}" aria-label="First name">
                         </div>
                         <div class="col">
-                            <input type="text" name="lastName" class="form-control" placeholder="Last name" aria-label="Last name">
+                            <input type="text" name="lastName" class="form-control" placeholder="Last name" value="{{profile.lastName}}" aria-label="Last name">
                         </div>
                         <button type="submit" class="btn btn-success mt-2">Submit</button>
+                        {{else}}
+                        <div class="col mb-2">
+                            <input type="text" name="firstName" class="form-control" placeholder="First name" value="{{profile.firstName}}" aria-label="First name">
+                        </div>
+                        <div class="col">
+                            <input type="text" name="lastName" class="form-control" placeholder="Last name" value="{{profile.lastName}}" aria-label="Last name">
+                        </div>
+                        <button type="submit" class="btn btn-success mt-2">Submit</button>
+                    {{/if}}
                     </form>
                 </div>
                 <div class="col-6">
@@ -50,29 +60,48 @@
                 </div>
                 <div class="row">
                     <div class="col-6s">
-                        <form action="#" method="post" class="container">
+                        <form action="/profile/address" method="post" class="container">
 <!--                            <select class="form-select" aria-label="Default select example">-->
 <!--                                <option selected>Select District</option>-->
 <!--                                <option value="1">One</option>-->
 <!--                                <option value="2">Two</option>-->
 <!--                                <option value="3">Three</option>-->
 <!--                            </select>-->
+                            {{#if address}}
                             <div class="col mb-2">
-                                <input type="text" class="form-control" placeholder="Country" aria-label="Country">
+                                <input type="text" name="country" class="form-control" placeholder="Country"  value="{{address.country}}" aria-label="Country">
                             </div>
                             <div class="col mb-2">
-                                <input type="text" class="form-control" placeholder="Address" aria-label="Address">
+                                <input type="text" name="address" class="form-control" placeholder="Address" value="{{address.address}}" aria-label="Address">
                             </div>
                             <div class="col mb-2">
-                                <input type="text" class="form-control" placeholder="City" aria-label="City">
+                                <input type="text" name="city" class="form-control" placeholder="City" value="{{address.city}}" aria-label="City">
                             </div>
                             <div class="col mb-2">
-                                <input type="text" class="form-control" placeholder="State" aria-label="State">
+                                <input type="text" name="state" class="form-control" placeholder="State" value="{{address.state}}" aria-label="State">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Zip Code" aria-label="Zip Code">
+                                <input type="text" name="postalCode" class="form-control" placeholder="Postal Code" value="{{address.postalCode}}" aria-label="Postal Code">
                             </div>
                             <button type="submit" class="btn btn-success mt-2">Submit</button>
+                            {{else}}
+                                <div class="col mb-2">
+                                    <input type="text" name="country" class="form-control" placeholder="Country" aria-label="Country">
+                                </div>
+                                <div class="col mb-2">
+                                    <input type="text" name="address" class="form-control" placeholder="Address" aria-label="Address">
+                                </div>
+                                <div class="col mb-2">
+                                    <input type="text" name="city" class="form-control" placeholder="City" aria-label="City">
+                                </div>
+                                <div class="col mb-2">
+                                    <input type="text" name="state" class="form-control" placeholder="State" aria-label="State">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="postalCode" class="form-control" placeholder="Postal Code" aria-label="Postal Code">
+                                </div>
+                                <button type="submit" class="btn btn-success mt-2">Submit</button>
+                            {{/if}}
                         </form>
                     </div>
                 </div>
