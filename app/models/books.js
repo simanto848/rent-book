@@ -15,10 +15,6 @@ const Book = db.define("books", {
     picture: {
         type: Sequelize.STRING(255),
         allowNull: false,
-        validate: {
-            // Validating Picture URL
-            isUrl: true
-        }
     },
     author: {
         type: Sequelize.STRING(255),
@@ -38,18 +34,10 @@ const Book = db.define("books", {
     },
     condition: {
         type: Sequelize.STRING(255),
-        allowNull: false,
-        validate: {
-            validConditions(value) {
-                const validConditions = ["new", "used", "like new"]
-                if (!validConditions.includes(value)) {
-                    throw new Error("Condition must be new, used, or like new")
-                }
-            }
-        }
+        allowNull: false
     },
     weight: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     quantity: {
@@ -61,17 +49,11 @@ const Book = db.define("books", {
         allowNull: false,
         defaultValue: false
     }
-    // sellerId(foreign key), keywordId(foreign key)
 },
 {
     timestamps: true,
     createdAt: "created_at",
-    updatedAt: "updated_at",
-    defaultScope: {
-        where: {
-            status: true
-        }
-    }
+    updatedAt: "updated_at"
 })
 
 module.exports = Book

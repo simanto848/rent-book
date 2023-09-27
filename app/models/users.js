@@ -15,10 +15,15 @@ const User = db.define('users', {
         username: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique: true,
         },
         password: {
             type: Sequelize.STRING,
             allowNull: false
+            // validate: {
+            //     min: 6,
+            //     is: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/
+            // }
         },
         role: {
             type: Sequelize.BOOLEAN,

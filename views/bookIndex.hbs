@@ -1,4 +1,53 @@
 {{>stylesheetlinks}}
+<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
 {{>navbar}}
 
-<h1>Book Section</h1>
+<div class="container border mt-3">
+    <form action="/book" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="title" aria-describedby="title">
+        </div>
+        <div class="mb-3">
+            <input type="file" name="coverPicture" id="upload-btn" class="file-input" accept="image/*">
+            <label class="file-input-label" for="upload-btn"><i class="fas fa-solid fa-upload"></i> Upload Book Picture</label>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" name="author" class="form-control" id="author">
+        </div>
+        <div class="form-floating mb-3">
+            <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">Description</label>
+        </div>
+        <div class="mb-3">
+            <label for="language" class="form-label">Language</label>
+            <input type="text" name="language" class="form-control" id="language">
+        </div>
+        <div class="mb-3">
+            <label for="pages" class="form-label">Pages</label>
+            <input type="number" name="pages" class="form-control" id="pages">
+        </div>
+        <div class="mb-3">
+            <label for="condition" class="form-label">Condition</label>
+            <input type="text" name="condition" class="form-control" id="condition">
+        </div>
+        <div class="mb-3">
+            <label for="weight" class="form-label">Weight</label>
+            <input type="text" name="weight" class="form-control" id="weight">
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" name="quantity" class="form-control" id="quantity">
+        </div>
+<!--        <div class="mb-3">-->
+<!--            <label for="author" class="form-label">Category</label>-->
+<!--            <input type="text" name="category" class="form-control" id="author">-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--            <label for="author" class="form-label">Keywords</label>-->
+<!--            <input type="text" name="keyword" class="form-control" id="author">-->
+<!--        </div>-->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
