@@ -17,5 +17,10 @@
             <a href="/user/register" class="float-end link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Sing up</a>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        {{#if message}}
+            <div class="alert alert-danger mt-2">
+                <h4>{{message.message}}</h4>
+            </div>
+        {{/if}}
     </form>
 </div>

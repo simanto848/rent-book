@@ -46,16 +46,25 @@ const createPost = async (req, res) => {
                     // const newPayload = Object.assign({}, bookPayload)
                     const book = await Book.create(bookPayload)
                     if(book){
-                        // req.flash("success", "Book has been added")
+                        req.session.message = {
+                            type: "warning",
+                            message: "Book has been added!!!"
+                        }
                         return res.redirect("/book")
                     }
                     else {
-                        // req.flash("error", "Failed to add book")
+                        req.session.message = {
+                            type: "warning",
+                            message: "Failed to add book!!!"
+                        }
                         return res.redirect("/book")
                     }
                 }
                 else {
-                    // req.flash("error", "Same Book already exist")
+                    req.session.message = {
+                        type: "warning",
+                        message: "Same Book already exist!!!"
+                    }
                     return res.redirect("/book")
                 }
         }

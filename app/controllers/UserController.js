@@ -61,9 +61,11 @@ const login = async (req, res) => {
     try {
         const { username, password } = req.body
         if(!username || !password){
-            return res.render("login", {
-                alert: "Please fill all the fields!!!"
-            })
+            req.session.message = {
+                type: "warning",
+                message: "Please fill all the fields!!!"
+            }
+            return res.redirect("/user")
         }
         else {
             if(req.method === "POST"){
@@ -76,9 +78,11 @@ const login = async (req, res) => {
                     }
                 })
                 if(!await  bcrypt.compare(password, user.password)){
-                    return res.render("login", {
-                        alert: "Invalid Credentials!!!"
-                    })
+                    req.session.message = {
+                        type: "warning",
+                        message: "Invalid Credentials!!!"
+                    }
+                    return res.redirect("/user")
                 }
                 else {
                     if(user.isActive === true && user.role === false){
@@ -90,6 +94,10 @@ const login = async (req, res) => {
         }
     } catch (e) {
         console.log(e)
+        req.session.message = {
+            type: "warning",
+            message: "Internal Server Error!!!"
+        }
         return res.status(500).send("Internal Server Error")
     }
 }
