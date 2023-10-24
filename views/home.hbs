@@ -1,4 +1,26 @@
 {{>stylesheetlinks}}
 {{>navbar}}
 
-<h1>Home Page</h1>
+{{#each books}}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{this.picture}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">{{this.author}}</p>
+                <p class="card-text">{{this.description}}</p>
+                <p class="card-text">{{this.language}}</p>
+                <p class="card-text">{{this.pages}}</p>
+                <p class="card-text">{{this.condition}}</p>
+                <p class="card-text">{{this.weight}}</p>
+                <p class="card-text">{{this.quantity}}</p>
+                <p class="card-text">{{this.user.username}}</p>
+                <p class="card-text">{{this.category.name}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}

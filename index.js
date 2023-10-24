@@ -40,10 +40,6 @@ app.use((req, res, next) => {
 
 // ------ Routes ------ //
 app.use("/", routes)
-// app.all("*", (req, res, next) => {
-//     const err = new CustomError(`Can't find ${req.originalUrl} on the server`, 404)
-//     next()
-// })
 
 // ------ Server Setup ------ //
 const PORT = process.env.PORT || 8080

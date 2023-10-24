@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize")
 const db = require("../../config/dbConfig")
 
-const SuperAdmin = db.define("superadmin", {
+class SuperAdmin extends Sequelize.Model {}
+
+SuperAdmin.init({
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -25,11 +27,13 @@ const SuperAdmin = db.define("superadmin", {
         allowNull: false,
         defaultValue: true,
     }
-},
-{
+}, {
+    sequelize: db,
+    modelName: "SuperAdmin",
+    tableName: "superadmins",
     timestamps: true,
     createdAt: "created_at",
-    updatedAt: "updated_at",
+    updatedAt: "updated_at"
 })
 
 module.exports = SuperAdmin

@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize")
 const db = require("../../config/dbConfig")
 
-const Order = db.define("orders", {
+class Order extends Sequelize.Model {}
+
+Order.init({
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -41,10 +43,12 @@ const Order = db.define("orders", {
         }
     }
     // userId(foreign key), productId(foreign key)
-},
-{
+}, {
+    sequelize: db,
+    modelName: "Order",
+    tableName: "orders",
     timestamps: true,
-    createdAt: "ordered_at",
+    createdAt: "created_at",
     updatedAt: "updated_at"
 })
 

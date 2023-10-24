@@ -9,13 +9,8 @@ const postSchema = joi.object({
     condition: joi.string().required(),
     weight: joi.number().required(),
     quantity: joi.number().integer().min(1).required(),
-    // category: joi.string().required().valid("new", "old")
-    // customName: joi.string().custom((value, msg) => {
-    //     if(value === "test"){
-    //         return msg.message("Not allow test name")
-    //     }
-    //     return true
-    // })
+    keyword: joi.string().required(),
+    category: joi.number().required()
 })
 
 module.exports = {

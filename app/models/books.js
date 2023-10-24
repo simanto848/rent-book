@@ -1,7 +1,10 @@
 const Sequelize = require("sequelize")
 const db = require("../../config/dbConfig")
+const User = require("./users")
+const Category = require("./categories")
 
-const Book = db.define("books", {
+class Book extends Sequelize.Model {}
+Book.init({
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -44,16 +47,50 @@ const Book = db.define("books", {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    keyword: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     trending: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false
     }
-},
-{
+},{
+    sequelize: db,
+    modelName: "Book",
+    tableName: "books",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at"
+})
+
+Book.belongsTo(User, {
+    foreignKey: "user_id",
+    as: "user",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+})
+
+User.hasMany(Book, {
+    foreignKey: "user_id",
+    as: "books",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+})
+
+Book.belongsTo(Category, {
+    foreignKey: "category_id",
+    as: "category",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+})
+
+Category.hasMany(Book, {
+    foreignKey: "category_id",
+    as: "books",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
 })
 
 module.exports = Book

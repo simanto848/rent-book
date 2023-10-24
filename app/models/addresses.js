@@ -1,7 +1,10 @@
 const Sequelize = require("sequelize")
 const db = require("../../config/dbConfig")
+const User = require("./users")
 
-const Address = db.define("addresses", {
+class Address extends Sequelize.Model {}
+
+Address.init({
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -29,11 +32,27 @@ const Address = db.define("addresses", {
         allowNull: false
     },
     // userId (foreign key) is added to the table.
-},
-    {
-        timestamps: true,
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
-    })
+}, {
+    sequelize: db,
+    modelName: "Addresses",
+    tableName: "addresses",
+    timestamps: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at"
+})
+
+Address.belongsTo(User, {
+    foreignKey: "user_id",
+    as: "user",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+})
+
+User.hasMany(Address, {
+    foreignKey: "user_id",
+    as: "addresses",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+})
 
 module.exports = Address;
