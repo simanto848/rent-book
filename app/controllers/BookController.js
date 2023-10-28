@@ -15,7 +15,7 @@ const createPost = async (req, res) => {
         return res.status(400).send("No files were uploaded")
     }
     // category, keyword
-    const userId = req.session.profile.id
+    const user_id = req.session.profile.id
     try{
         if(req.method === "POST"){
             await postSchema.validateAsync(req.body, {abortEarly: false})
@@ -24,7 +24,7 @@ const createPost = async (req, res) => {
                 where: {
                     [Op.and]: [
                         {title: req.body.title},
-                        {userId: userId}
+                        {user_id: user_id}
                     ]
                 }
             })
@@ -37,10 +37,9 @@ const createPost = async (req, res) => {
                 const bookPayload = req.body
                 const category_id = req.body.category
                 bookPayload.picture = bookCoverImageName
-                bookPayload.userId = userId
+                bookPayload.user_id = user_id
                 bookPayload.category_id = category_id
 
-                console.log(bookPayload)
                 // delete bookPayload.keyword
                 // const newPayload = Object.assign({}, bookPayload)
                 const book = await Book.create(bookPayload)

@@ -14,23 +14,27 @@ Cart.init({
     },
     quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 1,
     },
     rent_duration: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 24
     },
     delivery_charge: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 75
     },
-    total_price: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+    // total_price: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // },
     status: {
-        type: Sequelize.STRING(255),
-        allowNull: false
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
     }
     // userId(foreign key), productId(foreign key)
 },{

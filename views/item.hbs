@@ -1,0 +1,29 @@
+{{> stylesheetlinks}}
+{{> navbar}}
+
+<h1>Single item</h1>
+<div class="container">
+    <div class="row">
+        {{#if book}}
+            <figure class="snip1527">
+                <div class="image float-start">
+                    <img src="{{book.picture}}" class="w-75 h-25" alt="{{book.title}}"/>
+                </div>
+                <figcaption>
+                    <h3>{{book.title}}</h3>
+                    <small>{{book.author}}</small> <br>
+                    <small>Language: {{book.language}}</small> <br>
+                    <small class="text-muted">Category: <span class="fw-bold">{{book.category.name}}</span></small> <br>
+                    <small>Posted by: {{book.user.username}}</small>
+                    <p>Description: {{book.description}}</p>
+                    <p>Price: <strong>{{book.price}}</strong><span> tk</span></p>
+
+                    <form action="/cart/{{book.id}}" method="post">
+                        <button type="submit" class="btn btn-success">Add to Cart</button>
+                    </form>
+                </figcaption>
+<!--                <a href="/{{book.id}}/view"></a>-->
+            </figure>
+        {{/if}}
+    </div>
+</div>

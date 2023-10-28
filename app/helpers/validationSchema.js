@@ -9,6 +9,7 @@ const postSchema = joi.object({
     condition: joi.string().required(),
     weight: joi.number().required(),
     quantity: joi.number().integer().min(1).required(),
+    price: joi.number().integer().required(),
     keyword: joi.string().required(),
     category: joi.number().required()
 })

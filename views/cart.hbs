@@ -1,3 +1,39 @@
 {{>stylesheetlinks}}
 <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
 {{>navbar}}
+
+<div class="container">
+    <h1 class="text-center text-info-emphasis">Cart Page</h1>
+    <form action="#" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Duration</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Total</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each cart}}
+                        <tr>
+                            <td class="col-md-6">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{this.book.picture}}" style="width: 72px; height: 72px;" alt="product_img"> </a>
+                                </div>
+                            </td>
+                            <td>{{this.quantity}}</td>
+                            <td>{{this.rent_duration}}</td>
+                            <td>{{this.book.price}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>

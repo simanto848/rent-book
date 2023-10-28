@@ -10,7 +10,6 @@ const index = async (req, res) => {
                 { model: Category, as: 'category', attributes: ['name'] }
             ]
         })
-        console.log(books)
         res.render("home", {books: books})
     } catch (error) {
         console.log("Error retrieving books: ", error)
@@ -18,4 +17,23 @@ const index = async (req, res) => {
     }
 }
 
-module.exports = {index}
+const itemView = async (req, res) => {
+    try {
+        const book = await Book.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [
+                { model: User, as: 'user', attributes: ['username'] },
+                { model: Category, as: 'category', attributes: ['name'] }
+            ]
+        })
+        console.log("Book: ", book)
+        res.render("item", {book: book})
+    } catch (error) {
+        console.log("Error retrieving books: ", error)
+        res.status(500).send("Error retrieving books")
+    }
+}
+
+module.exports = { index, itemView }

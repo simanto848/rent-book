@@ -19,6 +19,10 @@ Book.init({
         type: Sequelize.STRING(255),
         allowNull: false,
     },
+    price: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     author: {
         type: Sequelize.STRING(255),
         allowNull: false

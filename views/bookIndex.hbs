@@ -4,16 +4,6 @@
 
 <div class="container border mt-3">
     <form action="/book" method="post" enctype="multipart/form-data">
-        {{#if message}}
-            <div class="alert alert-danger mt-2">
-                <h4>{{message.message}}</h4>
-            </div>
-        {{/if}}
-<!--        {{#if success}}-->
-<!--            <div class="alert alert-success mt-2">-->
-<!--                <h4>{{success.message}}</h4>-->
-<!--            </div>-->
-<!--        {{/if}}-->
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="title" aria-describedby="title">
@@ -50,6 +40,10 @@
             <label for="quantity" class="form-label">Quantity</label>
             <input type="number" name="quantity" class="form-control" id="quantity">
         </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Price</label>
+            <input type="number" name="price" class="form-control" id="price">
+        </div>
         {{#if categories}}
             <div style="max-height: 200px; overflow-y: auto;">
                 <select id="categorySelect" class="form-select" name="category" aria-label="Default select example">
@@ -66,5 +60,10 @@
             <input type="text" name="keyword" class="form-control" id="author" placeholder="Enter the keywords separated by comma(,)">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        {{#if message}}
+            <div class="alert alert-danger mt-2">
+                <h4>{{message.message}}</h4>
+            </div>
+        {{/if}}
     </form>
 </div>
